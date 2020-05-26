@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import Error from './Error';
 
-const Question = ({ setBudget, setRemainingBudget }) => {
+const Question = ({ setBudget, setRemainingBudget, updateQuestion }) => {
   //Definir el state
   const [amount, setAmount] = useState(0);
 
+  //Objeto de error
   const [error, setError] = useState({});
 
   // Función que lee el presupuesto
@@ -29,6 +30,7 @@ const Question = ({ setBudget, setRemainingBudget }) => {
     setError({ message: '', state: false });
     setBudget(amount);
     setRemainingBudget(amount);
+    updateQuestion(false);
   };
 
   return (
