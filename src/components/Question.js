@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import Error from './Error';
 
-const Question = () => {
+const Question = ({ setBudget, setRemainingBudget }) => {
   //Definir el state
   const [amount, setAmount] = useState(0);
 
@@ -27,6 +27,8 @@ const Question = () => {
 
     // Si se pasa la validación
     setError({ message: '', state: false });
+    setBudget(amount);
+    setRemainingBudget(amount);
   };
 
   return (
