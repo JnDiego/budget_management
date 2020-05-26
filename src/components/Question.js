@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
+import Error from './Error';
 
 const Question = () => {
   //Definir el state
   const [amount, setAmount] = useState(0);
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({});
 
   // Función que lee el presupuesto
   const defineBudget = (event) => {
@@ -16,20 +17,23 @@ const Question = () => {
     event.preventDefault();
 
     // Validar
-    if (amount < 1 || isNaN(amount)) {
-      setError(true);
+    if (amount < 1) {
+      setError({ message: 'Budget must be greater than 0', state: true });
+      return;
+    } else if (isNaN(amount)) {
+      setError({ message: 'No budget has been entered', state: true });
       return;
     }
 
     // Si se pasa la validación
-    setError(false);
+    setError({ message: '', state: false });
   };
 
   return (
     <Fragment>
       <h2>Enter your budget</h2>
 
-      {/* { error ?  : null} */}
+      {error.state ? <Error message={error.message} /> : null}
 
       <form action="" onSubmit={addBudget}>
         <input type="number" className="u-full-width" placeholder="Enter your budget" onChange={defineBudget} />
