@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Error from './Error';
 import shortid from 'shortid';
 
-const Form = ({ addNewExpense }) => {
+const Form = ({ setExpense, setCreateExpense }) => {
   //State para nombre del gasto
   const [expenseName, setExpenseName] = useState('');
 
@@ -13,7 +13,7 @@ const Form = ({ addNewExpense }) => {
   const [error, setError] = useState({});
 
   //Cuando el usuario agrega un gasto
-  const setExpense = (event) => {
+  const setNewExpense = (event) => {
     event.preventDefault();
 
     //Validar
@@ -36,7 +36,8 @@ const Form = ({ addNewExpense }) => {
     };
 
     // Pasar el gasto al componente principal
-    addNewExpense(expense);
+    setExpense(expense);
+    setCreateExpense(true);
 
     // Resetear el form
     setExpenseName('');
@@ -44,7 +45,7 @@ const Form = ({ addNewExpense }) => {
   };
 
   return (
-    <form action="" onSubmit={setExpense}>
+    <form action="" onSubmit={setNewExpense}>
       <h2>Add your expenses here...</h2>
       {error.state ? <Error message={error.message} /> : null}
       <div className="campo">
