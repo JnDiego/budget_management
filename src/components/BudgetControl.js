@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
+import { reviewBudget } from '../helpers';
 
 const BudgetControl = ({ budget, remainingBudget }) => {
   return (
     <Fragment>
       <div className="alert alert-primary">Budget: $ {budget}</div>
-      <div className="alert">Remaining: $ {remainingBudget}</div>
+      <div className={reviewBudget(budget, remainingBudget)}>Remaining: $ {remainingBudget}</div>
     </Fragment>
   );
 };
